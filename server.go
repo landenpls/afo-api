@@ -42,8 +42,8 @@ func main() {
 	router := mux.NewRouter().StrictSlash(true)
 	/* static */
 	router.PathPrefix("/img/").Handler(http.StripPrefix("/img/", http.FileServer(http.Dir("./imgs/"))))
+	router.Handle("/", http.FileServer(http.Dir("./static/")))
 	/* dynamic */
-	router.HandleFunc("/", default_enpoint)
 	router.HandleFunc("/fox", fox_endpoint)
 	/* 404 */
 	router.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {

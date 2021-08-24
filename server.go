@@ -40,7 +40,7 @@ func fox_endpoint(w http.ResponseWriter, r *http.Request) {
 }
 func yiff_endpoint(w http.ResponseWriter, r *http.Request) {
 	rand.Seed(time.Now().UnixNano())
-	_fn, _id := random_fn("fox")
+	_fn, _id := random_fn("yiff")
 	_url := "https://" + r.Host + "/img/yiff/" + _fn
 	json.NewEncoder(w).Encode([]img_response{
 		{Id: strconv.Itoa(_id), Url: _url},

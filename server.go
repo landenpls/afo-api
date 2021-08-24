@@ -54,5 +54,5 @@ func main() {
 		fmt.Fprintf(w, "Method not allowed")
 	})
 
-	log.Fatal(http.ListenAndServe(":80", router))
+	log.Fatal(http.ListenAndServe(":8080", router))
 }

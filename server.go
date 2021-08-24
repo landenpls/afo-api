@@ -60,12 +60,13 @@ func main() {
 
 	/* router */
 	router := mux.NewRouter().StrictSlash(true)
-	/* static */
-	router.PathPrefix("/img/").Handler(http.StripPrefix("/img/", http.FileServer(http.Dir("./imgs/"))))
-	router.Handle("/", http.FileServer(http.Dir("./static/")))
 	/* dynamic */
 	router.HandleFunc("/fox", fox_endpoint)
 	router.HandleFunc("/yiff", yiff_endpoint)
+	/* static */
+	router.PathPrefix("/img/").Handler(http.StripPrefix("/img/", http.FileServer(http.Dir("./imgs/"))))
+	router.PathPrefix("/demo/").Handler(http.StripPrefix("/demo/", http.FileServer(http.Dir("./static/demo/"))))
+	router.Handle("/", http.FileServer(http.Dir("./static/")))
 	/* 404 */
 	router.NotFoundHandler = http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		fmt.Fprintf(w, "afo suck cock")
